@@ -1,3 +1,4 @@
+    
 <template if:true={modalisopen}>
 
     <!-- Close Confirmation Dialog -->
@@ -43,7 +44,9 @@
                     </template>
 
                     <template if:true={basicIDnVLoading}>
-                        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                        <div class="slds-box slds-box_small" style="height:100px;">
+                            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                        </div>
                     </template>
 
                     <!-- Agent Landing -->
@@ -59,12 +62,12 @@
 
                                 <div key={q.id} class="slds-m-bottom_small">
 
-                                    <!-- ✅ IMPORTANT: label inside lightning-input -->
+                                    <!-- Input -->
                                     <lightning-input
                                         key={q.id}
                                         type={q.type}
                                         label={q.text}
-                                        variant="label-hidden"
+                                        variant="label-stacked"
                                         value={q.value}
                                         required
                                         maxlength={q.maxlength}
@@ -72,7 +75,7 @@
                                         autocomplete="off">
                                     </lightning-input>
 
-                                    <!-- Checkboxes -->
+                                    <!-- Autofill Checkbox -->
                                     <template if:true={q.autoFillCheckboxList}>
                                         <template for:each={q.autoFillCheckboxList} for:item="item">
                                             <lightning-input
@@ -103,6 +106,7 @@
                                     columns={columns}
                                     hide-checkbox-column
                                     column-widths-mode="auto"
+                                    min-column-width="150"
                                     onrowaction={openCustomerLanding}
                                     aria-label="Datatable"
                                     aria-labelledby="modal-datatable-01">
@@ -127,7 +131,7 @@
 
                 </div>
 
-                <!-- ✅ FIXED FOOTER -->
+                <!-- Footer -->
                 <footer class="slds-modal__footer">
 
                     <template if:false={agentLandingButton}>
